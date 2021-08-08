@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>let 與 const</title>
+  </head>
+  <body>
+    <script>
+      // let 與 const 是區域性的但他們最大的差別在於能不能被修改 
+      // const 只有 Object / arr 是能塞東西其餘不行
+      const a = {name: "mike"};
+      const b = [];
+      a["age"] = 12;
+      b.push("mike");
+      //b = 123;
+
+      console.log(a);
+      console.log(b);
+    </script>
+  </body>
+</html>
