@@ -6,6 +6,13 @@
     <title>ES Module</title>
   </head>
   <body>
-    <script></script>
+    <!-- 透過ES6接 Module 的方式來做 -->
+    <script type="module">
+      import Add, { Name, age } from "./js/Tools.js";
+
+      console.log(Add(1, 3));
+      console.log(Name);
+      console.log(age);
+    </script>
   </body>
 </html>

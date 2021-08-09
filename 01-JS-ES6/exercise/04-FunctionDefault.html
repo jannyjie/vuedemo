@@ -6,6 +6,23 @@
     <title>Function Default</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      // 基礎 Function 設定
+      // const ArrToStr = (arr = []) => {
+      //   const mapStr = arr.map(function (item){
+      //     return item + "";
+      //   });
+      //   return mapStr;
+      // };
+      // console.log(ArrToStr());
+
+      //簡寫 ES6
+      const ArrToStr = (arr = []) => {
+        const mapStr = arr.map((item) => item + "");
+        return mapStr;
+      };
+      console.log(ArrToStr());
+      
+    </script>
   </body>
 </html>

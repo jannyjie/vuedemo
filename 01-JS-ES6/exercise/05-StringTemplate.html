@@ -6,6 +6,20 @@
     <title>字串模板 string template</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      const add = (name, age) => {
+        // 原本寫法
+        return "hi我叫" + name + ",我今年" + age + "歲";
+        // 簡寫 ES6
+        return `hi我叫${name},我今年${age}歲`;
+        // 簡寫 ES6 如果要換行也可以這樣
+        return `
+        hi我叫${name},
+        我今年${age}歲
+        `;
+      };
+
+      console.log(add("mike", 12));
+    </script>
   </body>
 </html>
