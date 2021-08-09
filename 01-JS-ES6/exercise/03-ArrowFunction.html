@@ -8,6 +8,28 @@
   <body>
     <a id="aLink1" href="javascript:;">Click1</a>
     <a id="aLink2" href="javascript:;">Click2</a>
-    <script></script>
+    <script>
+      document.getElementById("aLink1").addEventListener("click", function () {
+        console.log("aLink1");
+      });
+
+      document.getElementById("aLink2").addEventListener("click", ()=> {
+        console.log("aLink2");
+      });
+
+      // 箭頭函式沒有 this 的選項 所以他的 this函式會往上跑
+
+      document.getElementById("aLink1").addEventListener("click", function () {
+        console.log(this);
+      });
+
+      // document.getElementById("aLink2").addEventListener("click", ()=> {
+      //   console.log(this);
+      // });
+
+      document.getElementById("aLink2").addEventListener("click", (e)=> {
+        console.log(e.target);
+      });
+    </script>
   </body>
 </html>
