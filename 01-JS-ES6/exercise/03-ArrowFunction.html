@@ -9,6 +9,7 @@
     <a id="aLink1" href="javascript:;">Click1</a>
     <a id="aLink2" href="javascript:;">Click2</a>
     <script>
+      //1. 方法一
       document.getElementById("aLink1").addEventListener("click", function () {
         console.log("aLink1");
       });
@@ -30,6 +31,39 @@
       document.getElementById("aLink2").addEventListener("click", (e)=> {
         console.log(e.target);
       });
+
+      // 2. 方法二
+
+      // const Add = function() {
+      //   console.log("ADD");
+      // };
+      // Add();
+
+      // const Add = ()=> {
+      //   console.log("ADD");
+      // };
+      // Add();
+
+      // 3. 方法三 如果是不是透過變數指定的方式直接指定↓這個方式它是不行的
+
+      // function Remove(){
+
+      // }
+
+      // 4. 方法四
+
+      // const Add = (a, b) => {
+      //   return a + b;
+      // };
+
+      // console.log(Add(1, 3));
+
+      // 簡寫
+      const Add = (a, b) =>  a + b;
+      console.log(Add(1, 3));
+      
+      
+
     </script>
   </body>
 </html>
