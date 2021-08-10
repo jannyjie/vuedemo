@@ -7,15 +7,31 @@
   </head>
   <body>
     <div id="app">
-      <h1></h1>
-      <button>Add</button>
-      <button>Remove</button>
+      <h1>{{num}}</h1>
+      <!-- <h2>{{NumData.idx}}</h2> -->
+      <button v-on:click="AddFn">Add</button>
+      <button v-on:click="RemoveFn">Remove</button>
+      <!-- 簡寫 -->
+      <!-- <button @:click="RemoveFn">Remove</button> -->
     </div>
     <script src="./js/vue.js"></script>
     <script>
+      const { ref } = Vue;
       const App = {
         setup() {
-          return {};
+          const num = ref(0);
+          // const NumData = reactive({idx: 0 });
+          const AddFn = () => {
+           //num.value = num.value + 1;
+            num.value++;
+            // NumData.idx++;
+          };
+          
+          const RemoveFn = () => {
+            num.value--;
+          };
+
+          return { num, AddFn, RemoveFn };
         },
       };
       Vue.createApp(App).mount("#app");

@@ -6,15 +6,27 @@
     <title>howToSelect</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      {{text}}
+      {{message.text}}
+    </div>
     <script src="./js/vue.js"></script>
     <script>
+      const { ref, reactive } = Vue;
       const App = {
         setup() {
-          return {};
+          const text = ref("hello Vue");
+          const message = reactive({ text: "janny"});
+          
+          return { text, message };
         },
       };
       Vue.createApp(App).mount("#app");
+
+      // 選擇 ref ? 還是 reactive ?
+      // 在大多數情況下兩者可以互相替換使用，主要取決於個人喜好或者團隊習慣，根據具體情況去決定要使用哪個就好。
+      // ref( ) : 可以接受任何型態的資料，但是不會對物件或陣列內部的屬性變動做監聽。
+      // reactive( ) : 只能接受物件或陣列，可以做深層的監聽，以及訪問資料不需要 .value。
     </script>
   </body>
 </html>

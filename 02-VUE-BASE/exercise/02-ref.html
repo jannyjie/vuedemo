@@ -7,13 +7,33 @@
   </head>
   <body>
     <div id="app">
-      <h1></h1>
+      <h1>{{text}}</h1>
     </div>
     <script src="./js/vue.js"></script>
     <script>
+      //基礎文字塞去 H1
+      // const App = {
+      //   setup() {
+
+      //     let text = "hello Vue";
+      //     return {text};
+      //   },
+      // };
+      // Vue.createApp(App).mount("#app");
+
+      const { ref } = Vue
       const App = {
         setup() {
-          return {};
+
+          const text = ref("hello Vue");
+          setTimeout(() => {
+
+            // 透過 value的屬性來修改我的資料還有抓起我的資料
+            text.value = "janny"
+
+            console.log(text);
+          }, 1000);
+          return {text};
         },
       };
       Vue.createApp(App).mount("#app");
