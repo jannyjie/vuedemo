@@ -13,20 +13,55 @@
   <body>
     <div id="app">
       <h1>{{Num.idx}}</h1>
+      <h1>{{Num}}</h1>
       <button @click="AddFn">Add</button>
       <button @click="Test">Add copy</button>
     </div>
     <script src="./js/vue.js"></script>
     <script>
-      const { reactive } = Vue;
+      // reactive
+      // 獲取一個對象（reactive 或plain）或一個ref並將只讀代理返回給原始對象。只讀代理很深：訪問的任何嵌套屬性也將是只讀的。
+      // 與 一樣reactive，如果任何屬性使用ref，則在通過代理訪問時將自動解包：
+
+      // readonly 就是讓你的 ref 或是 reactive 的資料只可以讀取不可以被修改
+      // 非常適合用在參數傳遞的時候避免不小心被修改資料
+
+      // const { reactive, readonly } = Vue;
+      // const App = {
+      //   setup() {
+      //     const Num = reactive({ idx: 0 });
+      //     const copyNum = readonly(Num);
+      //     const AddFn = () => {
+      //       Num.idx++;
+
+      //       console.log("Num", Num);
+      //       console.log("copyNum", copyNum);
+      //     };
+
+      //     const Test = () => {
+       //         copyNum.value++;
+      //     };
+
+      //     return { Num, AddFn, Test };
+      //   },
+      // };
+      // Vue.createApp(App).mount("#app");
+
+      const { ref, readonly } = Vue;
       const App = {
         setup() {
-          const Num = reactive({ idx: 0 });
+          const Num = ref(0);
+          const copyNum = readonly(Num);
           const AddFn = () => {
-            Num.idx++;
+            Num.value++;
+
+            console.log("Num", Num);
+            console.log("copyNum", copyNum);
           };
 
-          const Test = () => {};
+          const Test = () => {
+            copyNum.value++;
+          };
 
           return { Num, AddFn, Test };
         },

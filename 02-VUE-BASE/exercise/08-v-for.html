@@ -6,9 +6,15 @@
     <title>v-for</title>
   </head>
   <body>
+    <!-- v-for 將動元素 秀在 標籤上  v-for="(item, idx) in 綁定資料" -->
+    <!-- 如果使用 v-for 不要因為修改一個資料而全部重新渲染 需要加上 KEY  找其中一個名子不同的綁定 v-bind:key="" -->
+    <!-- v-for="(item, 索引) in 綁定資料名稱" 不建議用索引當作KEY 因為會常發生資料渲染發生錯誤的問題 -->
+    
+    
+    <!-- v-show 控制資料是否呈現 -->
     <div id="app">
       <ul>
-        <li></li>
+        <li v-for="(item, idx) in listArr" v-show="item.show" >{{idx + 1}}. {{item.name}}</li>
       </ul>
     </div>
     <script src="./js/vue.js"></script>
@@ -17,7 +23,7 @@
       const App = {
         setup() {
           const listArr = reactive([
-            { name: "2020 Vue3 專業職人 | 入門篇", show: true },
+            { name: "2020 Vue3 專業職人 | 入門篇1", show: true },
             { name: "2020 Vue3 專業職人 | 加值篇", show: false },
             { name: "2020 Vue3 專業職人 | 進階篇", show: true },
             { name: "現代 JavaScript 職人之路｜入門篇", show: true },

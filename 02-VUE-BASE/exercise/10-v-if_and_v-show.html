@@ -7,8 +7,12 @@
   </head>
   <body>
     <div id="app">
-      <h1 id="vue-if">{{Text}}</h1>
-      <h1 id="vue-show">{{Text}}</h1>
+      <!-- v-if (消耗資源會比較高)
+      直接將DOM從頁面上移除跟加入 -->
+      <h1 id="vue-if" v-if="isShow">{{Text}}</h1>
+      <!-- v-show
+      透過CSS的 display : none; 跟 display : block; 來顯示關閉 -->
+      <h1 id="vue-show" v-show="isShow">{{Text}}</h1>
       <button @click="handDomShow">Hand Dom Show</button>
     </div>
     <script src="./js/vue.js"></script>

@@ -6,9 +6,17 @@
     <title>key</title>
   </head>
   <body>
+    <!-- Key的重點注意事項
+    使用v-for的時候一定要給key
+    使用v-for的時候不要拿索引當作key
+    請使用唯一的值當作key的值 -->
+
+    <!-- 如果後端傳過來是沒有唯一索引怎麼辦?!
+    1. 要與後端溝通為何前端需要這個值
+    2. 你拿到資料自己產生KEY 塞進 這個 阿不倦 裡面然後再產生KEY丟回畫面 -->
     <div id="app">
       <ul>
-        <li v-for="(list, idx) in listArr" v-show="list.show">
+        <li v-for="(list, idx) in listArr" v-show="list.show" v-bind:key="list.name">
           {{idx + 1}}. {{list.name}}
         </li>
       </ul>

@@ -16,7 +16,8 @@
   <body>
     <div id="app">
       <ul>
-        <li v-for="(list, idx) in listArr" v-bind:key="list.name">
+        <!-- v-bind的方式動態綁定 css -->
+        <li v-for="(list, idx) in listArr" v-bind:key="list.name" v-bind:class="list.status">
           {{idx + 1}}. {{list.name}}
         </li>
       </ul>
