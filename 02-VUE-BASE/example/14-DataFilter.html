@@ -61,7 +61,7 @@
     <div id="app">
       <a @click="HandListShow" class="title">課程列表</a>
       <ul class="box" :style="{height: BoxHeight}">
-        <li v-for="(list, idx) in ItemArr" :key="list">
+        <li v-for="(list, idx) in filterData"  :key="list.monkey">
           {{idx + 1}}. {{list.name}} => ${{list.money}}
         </li>
       </ul>
@@ -82,6 +82,11 @@
             { name: "HTML5+Animate CC 網頁動畫與遊戲互動", money: 2000 },
             { name: "現代 JavaScript 職人之路｜面試篇", money: 1800 },
           ]);
+          // 透過 computed 塞選 金額
+          const filterData = computed(() => {
+            const filter = listArr.filter((item) => item.money > 500);
+            return filter;
+          });
 
           const ItemArr = computed(() => {
             const filter = listArr.filter((item) => item.money > 1300);
@@ -96,9 +101,11 @@
             isOpen.value = !isOpen.value;
           };
 
+          
+
           return {
             isOpen,
-            ItemArr,
+            filterData,
             HandListShow,
             BoxHeight,
           };
