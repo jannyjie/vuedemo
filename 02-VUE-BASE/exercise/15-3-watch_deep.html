@@ -10,14 +10,18 @@
 
     <script src="./js/vue.js"></script>
     <script>
+      // deep 會針對物間做深層掃描，他掃描耗費的成本比你原本只掃一層來的大
+      // data.value.user 針對單一物件
       const { ref, reactive, watch } = Vue;
       const App = {
         setup() {
           const data = ref({ user: {} });
 
-          watch(data, (newVal) => {
+          watch(data.value.user, (newVal) => {
             console.log(newVal);
-          });
+          },
+          { deep: true }
+          );
 
           setTimeout(() => {}, 1000);
 

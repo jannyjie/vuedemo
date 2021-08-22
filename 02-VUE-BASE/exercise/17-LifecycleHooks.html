@@ -12,6 +12,20 @@
 
     <script src="./js/vue.js"></script>
     <script>
+      // onBeforeMount / onMounted 當應用程式出來時去執行一次帶順序一定是 onBeforeMount 接下來才是 onMounted
+      // onUpdated 一開始不會被執行在資料更改導致virtual DOM重新渲染後調用
+      //https://v3.vuejs.org/guide/instance.html#lifecycle-diagram
+      //onBeforeMount  => DOM 渲染前執行 
+      // onMounted  => DOM 渲染完成後執行 
+      // onBeforeUpdate  => 資料更新DOM更改前執行
+      // onUpdated => 資料更新DOM更改後執行
+      // onBeforeUnmount => 組件銷毀前執行
+      // onUnmounted => 組件銷毀後執行
+      // onErrorCaptured => 當組件發出錯誤時後調用
+      // onRenderTracked => 監控 virtual DOM 重新選染時調用 ( 此事件告訴你操作什麼監聽了組件以及該操作的物件)
+      // onRenderTriggered => 監控 virtual DOM 重新選染時調用 ( 此事件告訴你操作什麼觸發了重新渲染，以及該操作的物件)
+
+
       const { ref, onBeforeMount, onMounted, onUpdated } = Vue;
       const App = {
         setup() {

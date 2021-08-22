@@ -18,19 +18,50 @@
   </head>
   <body>
     <div id="app">
-      <div class="content"></div>
+      <div class="content" v-html="html"></div>
     </div>
+
+
+    <!-- the click event's propagation will be stopped -->
+  <a @click.stop="doThis"></a>
+
+  <!-- the submit event will no longer reload the page -->
+  <form @submit.prevent="onSubmit"></form>
+
+  <!-- modifiers can be chained -->
+  <a @click.stop.prevent="doThat"></a>
+
+  <!-- just the modifier -->
+  <form @submit.prevent></form>
+
+  <!--   ㄎ
+  <div @click.capture="doThis">...</div>
+
+  <!-- only trigger handler if event.target is the element itself -->
+  <!-- i.e. not from a child element -->
+<div @click.self="doThat">...</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="./js/vue.js"></script>
     <script>
-      const { onMounted } = Vue;
+      // 需要確保後端傳回來的值是沒有JS 的 因為它會被觸發如果有含惡意病毒會被觸發
+      const { onMounted, ref } = Vue;
       const app = {
         setup() {
+          const html = ref("");
           onMounted(() => {
+
+            
+
             // api
+            axios
+              .get("https://vue-lessons-api.herokuapp.com/dom/content")
+              .then((res) => {
+                html.value = res.data.html;
+                //console.log(res);
+              });
           });
 
-          return {};
+          return { html, };
         },
       };
 

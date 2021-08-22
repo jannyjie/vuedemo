@@ -10,13 +10,23 @@
 
     <script src="./js/vue.js"></script>
     <script>
-      const { ref, reactive } = Vue;
+      // watchEffect 不需要傳入任何你需要監控的值你直接除入一個 摳被客 含是
+      // 在初始化就會先被執行
+      // watchEffect 裡面需要有去讀取執行 你的這個被改變的值他還會再被改變時被執行
+      const { ref, reactive, watchEffect } = Vue;
       const App = {
         setup() {
           const num = ref(0);
           const numData = reactive({ idx: 0 });
+          
+          const stop = watchEffect(() =>{
+            console.log(num.value);
+            if (num.value >= 4){
+              stop();
+            }
+          })
 
-          setTimeout(() => {
+          setInterval(() => {
             num.value++;
             numData.idx++;
           }, 1000);
