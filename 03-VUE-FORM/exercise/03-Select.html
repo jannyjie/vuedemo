@@ -10,21 +10,56 @@
   <body>
     <div id="app">
       <div class="select-box">
-        <select>
+        <select v-model="cityActive">
           <option disabled value="">請選擇縣市</option>
+          <option :value="item.name" v-for="item in twZip.city" :kay="item.name">{{item.name}}</option>
         </select>
-        <select>
+        <select v-model="areaActive">
           <option disabled value="">請選擇區域</option>
+          <!-- :value="item.name" 如果後端要得是 郵遞區號那就用 :value="item.zip" -->
+          <option :value="item.zip" v-for="item in twZip.area" :kay="item.name">{{item.name}}</option>
         </select>
       </div>
-      <a class="btn">送出</a>
+      <a class="btn" @click="handSubmit">送出</a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="./js/vue.js"></script>
     <script>
+      const { onMounted, reactive, ref, watch } = Vue;
       const App = {
         setup() {
-          return {};
+          const twZip = reactive({city: [], area:[]});
+          const cityActive = ref("");
+          const areaActive = ref("");
+
+          watch(cityActive, (newCity) => {
+            const newArr = twZip.city.filter((city) => city.name === newCity);
+            areaActive.value = "";
+            twZip.area = newArr[0].area;
+            // const newArr = twZip.city.filter((city) => city.name === newCity);
+            console.log(newArr[0].area);
+          });
+          
+          const handSubmit = () => {
+            console.log(cityActive.value);
+            console.log(areaActive.value);
+          }
+
+          onMounted(() => {
+            axios
+            .get('https://vue-lessons-api.herokuapp.com/city/list')
+            .then((res) =>{
+              twZip.city = res.data.twzip.city;
+              console.log(twZip.data);
+            });
+          });
+
+          return {
+            twZip,
+            cityActive,
+            areaActive,
+            handSubmit
+          };
         },
       };
 
