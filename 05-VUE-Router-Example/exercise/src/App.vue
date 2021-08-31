@@ -1,17 +1,37 @@
 <script>
+import { useRoute } from "vue-router";
+import { ref, watch } from "vue";
 export default {
   setup() {
-    return {};
+    // 用router-link選取的方式動態加入 link
+    const routerArr = ["", "about", "Courses"];
+    const route = useRoute();
+    const idx = ref(0);
+
+    watch(
+      () => route.path,
+      () => {
+        routerArr.forEach((item, index) => {
+          const rp = route.path.substr(1).split("/")[0];
+          //console.log(rp);
+
+          if (rp === item) {
+            idx.value = index;
+          }
+        })
+      }
+    );
+
+    return { idx };
   },
 };
 </script>
 
 <template>
   <div id="nav">
-    <router-link to="/"> Home </router-link>
-    |
-    <router-link to="/about"> About </router-link>
-    <router-link to="/Courses"> Courses </router-link>
+    <router-link to="/" :class="{active: idx === 0}"> Home </router-link>
+    <router-link to="/about" :class="{active: idx === 1}"> About </router-link>
+    <router-link to="/Courses" :class="{active: idx === 2}"> Courses </router-link>
   </div>
   <router-view />
 </template>
@@ -47,4 +67,7 @@ body {
     }
   }
 }
+// .router-link-active{
+//   color: red !important;
+// }
 </style>
