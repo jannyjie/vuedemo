@@ -47,26 +47,26 @@
       // };
       // Vue.createApp(App).mount("#app");
 
-      const { ref, readonly } = Vue;
-      const App = {
-        setup() {
-          const Num = ref(0);
-          const copyNum = readonly(Num);
-          const AddFn = () => {
-            Num.value++;
+      // const { ref, readonly } = Vue;
+      // const App = {
+      //   setup() {
+      //     const Num = ref(0);
+      //     const copyNum = readonly(Num);
+      //     const AddFn = () => {
+      //       Num.value++;
 
-            console.log("Num", Num);
-            console.log("copyNum", copyNum);
-          };
+      //       console.log("Num", Num);
+      //       console.log("copyNum", copyNum);
+      //     };
 
-          const Test = () => {
-            copyNum.value++;
-          };
+      //     const Test = () => {
+      //       copyNum.value++;
+      //     };
 
-          return { Num, AddFn, Test };
-        },
-      };
-      Vue.createApp(App).mount("#app");
+      //     return { Num, AddFn, Test };
+      //   },
+      // };
+      // Vue.createApp(App).mount("#app");
     </script>
   </body>
 </html>
