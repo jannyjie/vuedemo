@@ -1,7 +1,12 @@
 <script>
+import { useStore } from "vuex";
 export default {
   setup() {
-    const handClickMenu = () => {};
+    const store = useStore();
+
+    const handClickMenu = () => {
+      store.dispatch("handOpenState");
+    };
 
     return { handClickMenu };
   },
